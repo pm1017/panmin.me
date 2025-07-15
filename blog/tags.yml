@@ -1,0 +1,9 @@
+md:
+  label: Markdown
+  permalink: /md
+  description: Markdown 是一种轻量级标记语言，允许用户使用简单的语法编写格式化文本。
+
+mdx:
+  label: MDX
+  permalink: /mdx
+  description: MDX 是一种 Markdown 扩展，允许在 Markdown 中使用 React 组件。

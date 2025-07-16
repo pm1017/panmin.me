@@ -1,0 +1,226 @@
+---
+slug: mdx
+title: MDX
+authors: [pm1017]
+date: 2025-07-14
+tags: [mdx]
+---
+
+[MDX](https://mdxjs.com/) 完全指南：Markdown + React 的强大组合 ​
+
+{/* truncate */}
+
+## **1. 什么是 MDX？**
+
+MDX（**Markdown + JSX**）是一种文件格式，允许你在 **Markdown** 文档中直接嵌入 **React 组件** 和 **JavaScript 逻辑**。它结合了 Markdown 的简洁性和 React 的动态能力，适用于构建现代文档、博客和交互式内容。
+
+### **核心特点**
+
+- **Markdown 语法**：支持所有标准 Markdown（标题、列表、代码块等）。
+- **JSX 支持**：可以直接嵌入 React 组件（如 `<Button />`）。
+- **JavaScript 表达式**：可以在文档中动态计算值（如 `{new Date().toLocaleString()}`）。
+- **组件化文档**：适用于构建交互式教程、动态图表、可运行代码示例等。
+
+---
+
+## **2. MDX 的基本语法**
+
+### **(1) 普通 Markdown**
+
+```
+# 这是一个标题
+
+这是一个段落，支持 **加粗**、*斜体*、`代码` 等 Markdown 语法。
+
+- 列表项 1
+- 列表项 2
+```
+
+### **(2) 嵌入 JSX**
+
+```
+## 嵌入 React 组件
+
+<MyButton onClick={() => alert("Hello!")}>点击我</MyButton>
+```
+
+### **(3) 使用 JavaScript 表达式**
+
+```
+## 动态计算
+
+1 + 1 = {1 + 1}
+
+当前时间：{new Date().toLocaleString()}
+```
+
+### **(4) 导入外部组件**
+
+```
+import { Chart } from '../components/Chart';
+
+## 数据可视化
+
+<Chart data={[1, 2, 3]} />
+```
+
+---
+
+## **3. MDX 的适用场景**
+
+### **(1) 文档站点（如 Docusaurus、Next.js）**
+
+- 在 Markdown 中嵌入可交互的 UI 组件。
+- 支持代码示例、API 文档、动态表格等。
+
+### **(2) 博客（交互式内容）**
+
+- 在文章中添加可运行的代码编辑器。
+- 嵌入视频、动画、3D 模型等。
+
+### **(3) 技术教程**
+
+- 提供可交互的代码沙盒（如 CodeSandbox、StackBlitz）。
+- 动态生成示例数据。
+
+### **(4) 幻灯片（如 `mdx-deck`）**
+
+- 用 MDX 编写 PPT，支持 React 动画和交互。
+
+---
+
+## **4. MDX vs. 传统 Markdown**
+
+|      特性      | `.md` (Markdown) | `.mdx` (MDX) |
+| :------------: | :--------------: | :----------: |
+|   纯文本渲染   |        ✅        |      ✅      |
+|   支持 React   |        ❌        |      ✅      |
+|    动态计算    |        ❌        |      ✅      |
+|    组件复用    |        ❌        |      ✅      |
+|   交互式内容   |        ❌        |      ✅      |
+| 适用于静态站点 |        ✅        |      ✅      |
+
+---
+
+## **5. 如何在 Docusaurus 中使用 MDX？**
+
+Docusaurus 完全支持 MDX 文件格式，允许你在 Markdown 文档中无缝集成 React 组件。以下是详细使用指南：
+
+### **1. 创建 MDX 文件**
+
+在以下目录中创建 `.mdx` 文件：
+
+- 文档：`docs/` 目录下（如 `docs/get-started.mdx`）
+- 博客：`blog/` 目录下（如 `blog/2023-08-01-welcome.mdx`）
+
+### **2. 基本 MDX 语法**
+
+MDX 文件可以包含：
+
+```
+# Markdown 标题
+
+这是普通 **Markdown** 段落。
+
+<MyReactComponent />  <!-- 嵌入 React 组件 -->
+
+当前时间：{new Date().toLocaleString()}  <!-- JavaScript 表达式 -->
+```
+
+### **3. 使用 Docusaurus 内置组件**
+
+Docusaurus 提供了多个开箱即用的组件：
+
+#### **(1) Tabs 标签页**
+
+```
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CodeBlock from '@theme/CodeBlock';
+
+<Tabs>
+  <TabItem value="js" label="JavaScript">
+    <CodeBlock language="js">
+      console.log("Hello MDX!");
+    </CodeBlock>
+  </TabItem>
+
+  <TabItem value="py" label="Python">
+    <CodeBlock language="py">
+      print("Hello MDX!")
+    </CodeBlock>
+  </TabItem>
+</Tabs>
+```
+
+#### **(2) Admonition 提示框**
+
+```
+import Admonition from '@theme/Admonition';
+
+<Admonition type="tip" title="小技巧">
+  使用 MDX 可以让文档更交互式！
+</Admonition>
+```
+
+支持的类型：`note`|`tip`|`info`|`caution`|`danger`
+
+#### **(3) CodeBlock 代码块**
+
+```
+import CodeBlock from '@theme/CodeBlock';
+
+<CodeBlock language="js" title="示例代码">
+  console.log("语法高亮+标题");
+</CodeBlock>
+```
+
+### **4. 使用自定义 React 组件**
+
+1. 在 `src/components/` 创建组件：
+
+   ```
+   // src/components/Hello.js
+   export default function Hello({name}) {
+     return <div>Hello, {name}!</div>;
+   }
+   ```
+
+2. 在 MDX 中引入：
+
+   ```
+   import Hello from '@site/src/components/Hello';
+
+   <Hello name="MDX" />
+   ```
+
+### **5. 高级功能**
+
+#### **(1) 动态内容**
+
+```
+import { useState } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0);
+  return <button onClick={() => setCount(c => c + 1)}>点击次数：{count}</button>;
+}
+
+<Counter />
+```
+
+#### **(2) 样式处理**
+
+```
+import styles from './styles.module.css';
+
+<div className={styles.specialBox}>
+  这个 div 使用了 CSS Modules
+</div>
+```
+
+### **6. 注意事项**
+
+1. **组件导入**：所有自定义组件必须显式导入
+2. **Markdown 兼容性**：部分 Markdown 语法（如表格）在 JSX 中需要额外处理
+3. **性能优化**：避免在 MDX 中引入过重的前端逻辑

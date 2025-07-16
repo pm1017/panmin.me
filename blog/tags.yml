@@ -1,3 +1,8 @@
+docusaurus:
+  label: Docusaurus
+  permalink: /docusaurus
+  description: Docusaurus 是一个用于构建、部署和维护文档网站的工具。
+
 md:
   label: Markdown
   permalink: /md
@@ -7,3 +12,8 @@ mdx:
   label: MDX
   permalink: /mdx
   description: MDX 是一种 Markdown 扩展，允许在 Markdown 中使用 React 组件。
+
+git:
+  label: Git
+  permalink: /git
+  description: Git 是一个分布式版本控制系统，用于跟踪文件的更改。

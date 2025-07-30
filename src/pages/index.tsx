@@ -10,7 +10,7 @@ export default function Home(): ReactNode {
       <main>
         <section className={style.home}>
           <h1>Hello.</h1>
-          <h2>My name is Martin Pan.</h2>
+          <h2>My name is Pan Min.</h2>
           <p>
             I am a front-end engineer. Over the years, I have dedicated myself to enhancing my
             skills in front-end development, accumulating a wealth of experience and expertise.
@@ -32,7 +32,7 @@ export default function Home(): ReactNode {
           <p>
             Besides my job, I also enjoy writing technical blogs to share my development experiences
             and insights. If you are interested in front-end development, you can check out my{' '}
-            <a href="https://github.com/pm1017" target="_blank" rel="noopener noreferrer">
+            <a href="https://github.com/panmins" target="_blank" rel="noopener noreferrer">
               GitHub Profile
             </a>
             , where we can exchange ideas and learn together.
